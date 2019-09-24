@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import ResourceList from './ResourceList';
 
 const App = () => {
 
+    // Array destructuring
+    // useState sets the default value
+    // The second item is the function used to set the state item
     const [resource, setResource] = useState('posts');
 
     return (
@@ -10,7 +14,8 @@ const App = () => {
                 <button onClick={() => setResource('posts')}>Posts</button>
                 <button onClick={() => setResource('todos')}>Todos</button>
             </div>
-            {resource}
+            <ResourceList resource={resource} />
+
         </div>
     );
 
