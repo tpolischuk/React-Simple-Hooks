@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const ResourceList = ({ resource }) => {
-
+//Moving all the hook stuff into it's own function
+const useResources = (resource) => {
     const [resources, setResources] = useState([]);
-
-
 
     // The value passed to the array is used to compare the data, only runs if its different
     useEffect(() => {
@@ -15,6 +13,14 @@ const ResourceList = ({ resource }) => {
             setResources(response.data);
         })(resource)
     }, [resource]);
+
+    return resources;
+};
+
+
+const ResourceList = ({ resource }) => {
+
+    const resources = useResources(resource);
 
     return (
         <ul>{resources.map(record => <li key={record.id}>{record.title}</li>)}</ul>
